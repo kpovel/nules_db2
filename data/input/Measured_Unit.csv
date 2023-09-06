@@ -1,0 +1,17 @@
+Title,Unit,ID_Measured_Unit
+Humidity,%,1
+PM10,mg/m3,2
+PM2.5,mg/m3,3
+PM,mg/m3,4
+Pressure,hPa,5
+Temperature,Celsius,6
+Carbon dioxide,ppm,7
+Volatile organic compound,ppb,8
+Air Quolity Index,aqi,9
+PM1,mkg/m3,10
+Nitrogen dioxide,mkg/m3,11
+Carbon monoxide(CO),mg/m3,12
+Sulfur dioxide(SO2),mkg/m3,13
+Radiation,n3v/god,14
+Sulfur dioxide,ppb,15
+Nitrogen dioxide,ppb,16

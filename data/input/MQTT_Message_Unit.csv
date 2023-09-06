@@ -1,0 +1,7 @@
+ID_Station,ID_Measured_Unit,Message,Queue_Number
+1001,1,monitor/dev05/Si7021_hum,5
+1001,4,monitor/dev05/GP2Y10_dust,6
+1001,5,monitor/dev05/BME280_press,2
+1001,6,monitor/dev05/Si7021_temp,1
+1001,7,monitor/dev05/CCS811_eCO2,3
+1001,8,monitor/dev05/CCS811_TVOC,4

@@ -1,0 +1,17 @@
+City,Name,ID_Station,Status,ID_Server,ID_SaveEcoBot
+Dnipro,"Haharina Avenue, 43",0002,enabled,NULL,SAVEDNIPRO_008
+Kyiv,"Mykhaila Lomonosova Street, 73",0003,enabled,NULL,SAVEDNIPRO_010
+Kyiv,"vulytsia Henerala Zhmachenka, 4",0004,enabled,NULL,SAVEDNIPRO_1004
+Kyiv,"prospekt Heroiv Stalinhrada, 6K8",0005,enabled,NULL,SAVEDNIPRO_1274
+Kyiv,"vulytsia Saperno-Slobidska, 25/4",0006,enabled,NULL,SAVEDNIPRO_1278
+Kyiv,vulytsia 8-a Sadova,0007,enabled,NULL,SAVEDNIPRO_1294
+Kyiv,"vulytsia Reitarska, 17",0008,enabled,NULL,SAVEDNIPRO_1387
+Kyiv,"vulytsia Heroiv Oborony, 13",0009,enabled,NULL,SAVEDNIPRO_2924
+Kyiv,"vulytsia Tykhoritska, 30/7",0010,enabled,NULL,SAVEDNIPRO_2925
+Kyiv,"vulytsia Zhylianska, 30A",0011,enabled,NULL,SAVEDNIPRO_3018
+Kyiv,"Kharkivske shose, 7/1",0014,enabled,NULL,SAVEDNIPRO_14633
+Kyiv,"Architect Verbytsky Street, 26",0015,disabled,NULL,SAVEDNIPRO_14634
+Kyiv,"Turivska Street, 28",0016,disabled,NULL,SAVEDNIPRO_19867
+Kyiv,"vulytsia Schyseva, 21",0017,disabled,NULL,SAVEDNIPRO_19720
+Kyiv,"prospect Pravdy, 64G",0018,disabled,NULL,SAVEDNIPRO_19719
+Kyiv,test station,1001,enabled,1,NULL
