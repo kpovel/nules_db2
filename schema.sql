@@ -6,10 +6,11 @@ create table MQTT_Server
     Status    Server_Status       not null
 );
 
+create type Designation_Category as enum ('Excellent', 'Fine', 'Moderate', 'Poor', 'Very Poor', 'Severe');
 create table Category
 (
     ID_Category serial primary key,
-    Designation varchar(255) not null
+    Designation Designation_Category not null
 );
 
 create type Units as ENUM ('%', 'mg/m3', 'hPa', 'Celsius', 'ppm', 'ppb', 'aqi', 'mkg/m3', 'n3v/god');
