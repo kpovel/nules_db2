@@ -70,7 +70,7 @@ create table MQTT_Unit
 
 create table Favorite
 (
-    ID_User    serial primary key,
+    ID_User    serial,
     ID_Station serial not null,
 
     foreign key (ID_Station) references Station (ID_Station)
