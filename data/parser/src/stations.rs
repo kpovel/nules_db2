@@ -87,7 +87,7 @@ fn combine_data(stations: &Vec<Station>, coordinates: &Vec<Coordinate>) -> Vec<S
     return combined_data;
 }
 
-fn parse_csv_line(line: &str) -> Vec<String> {
+pub fn parse_csv_line(line: &str) -> Vec<String> {
     let mut tokens = vec![];
     let mut current_token = String::new();
     let mut in_quotes = false;
