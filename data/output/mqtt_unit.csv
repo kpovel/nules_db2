@@ -1,0 +1,7 @@
+ID_Station,ID_Measured_Unit,Message,Order
+2,1,monitor/dev05/Si7021_hum,5
+2,4,monitor/dev05/GP2Y10_dust,6
+2,5,monitor/dev05/BME280_press,2
+2,6,monitor/dev05/Si7021_temp,1
+2,7,monitor/dev05/CCS811_eCO2,3
+2,8,monitor/dev05/CCS811_TVOC,4
