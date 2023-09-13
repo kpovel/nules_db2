@@ -10,7 +10,7 @@ pub fn parse_mqtt_unit() {
         let split_line: Vec<_> = l.split(",").collect();
         let formatted_string = format!(
             "{},{},{},{}",
-            "2",
+            "0002",
             split_line[1],
             split_line[2],
             split_line[3]
