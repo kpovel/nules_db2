@@ -8,16 +8,11 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type MQTT_Server struct {
-	id_server uint
-	url       string
-	status    string
-}
-
 func main() {
 	connStr := "postgres://postgres:12345678@localhost:5432/eco-station?sslmode=disable"
 
 	db, err := sql.Open("postgres", connStr)
+	defer db.Close()
 
 	if err != nil {
 		log.Fatal(err)
