@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"net/http"
 
 	_ "github.com/lib/pq"
 )
@@ -53,5 +54,17 @@ func main() {
 
 	for _, server := range servers {
 		fmt.Printf("ID: %d, URL: %s, Status: %s\n", server.id_server, server.url, server.status)
+	}
+
+	fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fs)
+  http.HandleFunc("/htmx.min.js", func(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "htmx.min.js")
+  })
+	log.Print("Listening on :42069")
+
+	err = http.ListenAndServe(":42069", nil)
+	if err != nil {
+		log.Fatal(err)
 	}
 }
