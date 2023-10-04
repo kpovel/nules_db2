@@ -55,6 +55,7 @@ func main() {
     http.ServeFile(w, r, "htmx.min.js")
   })
   http.HandleFunc("/login", app.login)
+  http.HandleFunc("/signup", app.signup)
 
 	log.Print("Listening on :42069")
 
