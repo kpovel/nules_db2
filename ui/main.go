@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -50,17 +49,13 @@ func main() {
 
 	app := App{DB: db}
 
-	servers := app.select_servers()
-
-	for _, server := range servers {
-		fmt.Printf("ID: %d, URL: %s, Status: %s\n", server.id_server, server.url, server.status)
-	}
-
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs)
   http.HandleFunc("/htmx.min.js", func(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w, r, "htmx.min.js")
   })
+  http.HandleFunc("/login", app.login)
+
 	log.Print("Listening on :42069")
 
 	err = http.ListenAndServe(":42069", nil)
