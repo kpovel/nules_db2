@@ -51,11 +51,16 @@ func main() {
 
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs)
-  http.HandleFunc("/htmx.min.js", func(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w, r, "htmx.min.js")
-  })
-  http.HandleFunc("/login", app.login)
-  http.HandleFunc("/signup", app.signup)
+
+	protected_fs := http.FileServer(http.Dir("./static/protected"))
+	http.Handle("/protected/", http.StripPrefix("/protected", requireAuth(protected_fs)))
+
+	http.HandleFunc("/htmx.min.js", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "htmx.min.js")
+	})
+
+	http.HandleFunc("/api/login", app.login)
+	http.HandleFunc("/api/signup", app.signup)
 
 	log.Print("Listening on :42069")
 

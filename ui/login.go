@@ -34,5 +34,5 @@ func (app *App) login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.SetCookie(w, cookie)
-	w.Header().Add("HX-Redirect", "/home.html")
+	w.Header().Add("HX-Redirect", "/protected/home.html")
 }
