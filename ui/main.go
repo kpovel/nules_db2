@@ -50,10 +50,13 @@ func main() {
 	app := App{DB: db}
 
 	fs := http.FileServer(http.Dir("./static"))
-	http.Handle("/", fs)
+	http.Handle("/",http.StripPrefix("/", withoutAuth(fs)))
 
 	protected_fs := http.FileServer(http.Dir("./static/protected"))
 	http.Handle("/protected/", http.StripPrefix("/protected", requireAuth(protected_fs)))
+
+	css_fs := http.FileServer(http.Dir("./static/css"))
+	http.Handle("/css/",http.StripPrefix("/css", css_fs))
 
 	http.HandleFunc("/htmx.min.js", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "htmx.min.js")
