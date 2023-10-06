@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>Eco Station: Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/output.css">
     <script src="/htmx.min.js"></script>
   </head>
   <body>
-    home
-    fasd
+    <header class="p-4 bg-blue-400 flex justify-between">
+      <a href="/protected/home.html" class="font-semibold text-xl">Eco Station</a>
+      <button class="font-medium text-lg" hx-get="/api/signout">Sign Out</button>
+    </header>
+    <h1>
+      home
+    </h1>
   </body>
 </html>

@@ -64,6 +64,7 @@ func main() {
 
 	http.HandleFunc("/api/login", app.login)
 	http.HandleFunc("/api/signup", app.signup)
+  http.HandleFunc("/api/signout", app.signout)
 
 	log.Print("Listening on :42069")
 
