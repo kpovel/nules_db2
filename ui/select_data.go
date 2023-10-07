@@ -73,17 +73,29 @@ func (app *App) select_data(w http.ResponseWriter, r *http.Request) {
 		for cities_query.Next() {
 			var city city
 			if err := cities_query.Scan(&city.Name); err != nil {
-				fmt.Println(w, "Error due to scanning a table: %v", err)
+				fmt.Fprintf(w, "Error due to scanning a table: %v", err)
 				log.Println(err)
 				return
 			}
 			cities = append(cities, city)
 		}
 
-    cities_table := template.Must(template.ParseFiles("./templates/cities.html"))
-    cities_table.Execute(w, cities)
+		cities_table := template.Must(template.ParseFiles("./templates/cities.html"))
+		cities_table.Execute(w, cities)
 
 	case "station-info":
+		station_query := app.DB.QueryRow("select * from station where coordinates <-> point(35.058606, 48.44803) = 0;")
+
+		var station Station
+		if err := station_query.Scan(&station.ID_Station, &station.City, &station.Name, &station.Status, &station.ID_SaveEcoBot, &station.ID_Server, &station.Coordinates); err != nil {
+			fmt.Fprintf(w, "Error due to scanning a table: %v", err)
+			log.Println(err)
+			return
+		}
+
+		station_template := template.Must(template.ParseFiles("./templates/station.html"))
+		station_template.Execute(w, station)
+
 	case "obtained-parameters":
 	case "optival-value":
 	default:

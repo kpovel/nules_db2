@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th class="border border-black font-semibold p-4 text-left">ID_Station</th>
+      <th class="border border-black font-semibold p-4 text-left">ID_SaveEcoBot</th>
+      <th class="border border-black font-semibold p-4 text-left">ID_Server</th>
+      <th class="border border-black font-semibold p-4 text-left">City</th>
+      <th class="border border-black font-semibold p-4 text-left">Name</th>
+      <th class="border border-black font-semibold p-4 text-left">Status</th>
+      <th class="border border-black font-semibold p-4 text-left">Coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border border-black p-2">{{.ID_Station}}</td>
+      <td class="border border-black p-2">{{.ID_SaveEcoBot}}</td>
+      <td class="border border-black p-2">{{.ID_Server}}</td>
+      <td class="border border-black p-2">{{.City}}</td>
+      <td class="border border-black p-2">{{.Name}}</td>
+      <td class="border border-black p-2">{{.Status}}</td>
+      <td class="border border-black p-2">({{.Coordinates.X}}, {{.Coordinates.Y}})</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,6 +1,9 @@
 package main
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Server_Status string
 
@@ -61,6 +64,19 @@ type Optimal_Value struct {
 type Point struct {
 	X float64
 	Y float64
+}
+
+func (p *Point) Scan(value interface{}) error {
+	strValue := string(value.([]byte))
+
+	n, err := fmt.Sscanf(strValue, `(%f,%f)`, &p.X, &p.Y)
+	if err != nil {
+		return err
+	}
+	if n != 2 {
+		return fmt.Errorf("did not scan enough items from point string: %d", n)
+	}
+	return nil
 }
 
 type Station struct {
