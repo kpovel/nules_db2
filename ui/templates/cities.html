@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th class="w-1/2 border border-black font-semibold p-4 text-left">City</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .}}
+      <tr>
+        <td class="border border-black p-2">{{.Name}}</td>
+      </tr>
+    {{end}}
+  </tbody>
+</table>
+

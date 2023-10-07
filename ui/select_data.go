@@ -12,7 +12,7 @@ type station struct {
 	City string
 }
 
-type distinct_stations struct {
+type city struct {
 	Name string
 }
 
@@ -36,20 +36,21 @@ func (app *App) select_data(w http.ResponseWriter, r *http.Request) {
                                 from station
                                 join stationFirstMeasurment sfm on station.id_station = sfm.id_station
                                 where extract(year from sfm.firstTimeMeasurement) >= 2021;`)
-		defer station_query.Close()
 		if err != nil {
 			fmt.Fprintf(w, "Error: %v", err)
-			log.Fatal(err)
+			log.Println(err)
 			return
 		}
+
+		defer station_query.Close()
 
 		var stations []station
 
 		for station_query.Next() {
 			var station station
 			if err := station_query.Scan(&station.Name, &station.City); err != nil {
-				fmt.Println(w, "Error: %v", err)
-				log.Fatal(err)
+				fmt.Println(w, "Error due to scanning a table: %v", err)
+				log.Println(err)
 				return
 			}
 			stations = append(stations, station)
@@ -58,7 +59,30 @@ func (app *App) select_data(w http.ResponseWriter, r *http.Request) {
 		station_template := template.Must(template.ParseFiles("./templates/stations.html"))
 		station_template.Execute(w, stations)
 
-	case "distinct-stations":
+	case "cities-with-station":
+		cities_query, err := app.DB.Query("select distinct city from station;")
+
+		if err != nil {
+			fmt.Fprintf(w, "Error: %v", err)
+			log.Println(err)
+			return
+		}
+		defer cities_query.Close()
+
+		var cities []city
+		for cities_query.Next() {
+			var city city
+			if err := cities_query.Scan(&city.Name); err != nil {
+				fmt.Println(w, "Error due to scanning a table: %v", err)
+				log.Println(err)
+				return
+			}
+			cities = append(cities, city)
+		}
+
+    cities_table := template.Must(template.ParseFiles("./templates/cities.html"))
+    cities_table.Execute(w, cities)
+
 	case "station-info":
 	case "obtained-parameters":
 	case "optival-value":
