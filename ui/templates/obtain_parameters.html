@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th class="border border-black font-semibold p-4 text-left">ID_Measurement</th>
+      <th class="border border-black font-semibold p-4 text-left">ID_Station</th>
+      <th class="border border-black font-semibold p-4 text-left">ID_Measured_Unit</th>
+      <th class="border border-black font-semibold p-4 text-left">Time</th>
+      <th class="border border-black font-semibold p-4 text-left">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .}}
+    <tr>
+      <td class="border border-black p-2">{{.ID_Measurement}}</td>
+      <td class="border border-black p-2">{{.ID_Station}}</td>
+      <td class="border border-black p-2">{{.ID_Measured_Unit}}</td>
+      <td class="border border-black p-2">{{.Time}}</td>
+      <td class="border border-black p-2">{{.Value}}</td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>

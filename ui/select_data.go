@@ -24,6 +24,14 @@ type optimal_value struct {
 	Upper_border  *uint
 }
 
+type obtained_parameter struct {
+  ID_Measurement uint
+  ID_Station uint
+  ID_Measured_Unit uint
+  Time string
+  Value float64
+}
+
 func (app *App) select_data(w http.ResponseWriter, r *http.Request) {
 	select_data := r.URL.Query().Get("select-data")
 
@@ -97,7 +105,36 @@ func (app *App) select_data(w http.ResponseWriter, r *http.Request) {
 		station_template.Execute(w, station)
 
 	case "obtained-parameters":
-	case "optival-value":
+		measurement_query, err := app.DB.Query(`with KyivsStations as (select id_station from station where city = 'Kyiv')
+    select measurement.id_measurement, measurement.id_station, measurement.id_measured_unit, measurement.time, measurement.value
+    from measurement join KyivsStations on KyivsStations.id_station = measurement.id_station
+    where date(time) between '2022-01-01' and '2022-02-20'
+    group by measurement.id_station, measurement.id_measured_unit, measurement.value, measurement.time, measurement.id_measurement
+    limit 500;`)
+
+    if err != nil {
+      fmt.Fprintf(w, "Error: %v", err)
+      log.Println(err)
+      return
+    }
+
+    var parameters []obtained_parameter
+
+    for measurement_query.Next() {
+      var parameter obtained_parameter
+      if err := measurement_query.Scan(&parameter.ID_Measurement, &parameter.ID_Station, &parameter.ID_Measured_Unit, &parameter.Time, &parameter.Value); err != nil {
+        fmt.Fprintf(w, "Error due to scanning a table: %v", err)
+        log.Println(err)
+        return
+      }
+
+      parameters = append(parameters, parameter)
+    }
+
+    parameters_table := template.Must(template.ParseFiles("./templates/obtain_parameters.html"))
+    parameters_table.Execute(w, parameters)
+
+	case "optimal-value":
 	default:
 		unknown_select := "Unknown select-data"
 		fmt.Fprintf(w, unknown_select)
