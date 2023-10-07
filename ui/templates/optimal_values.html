@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th class="border border-black font-semibold p-4 text-left">Title</th>
+      <th class="border border-black font-semibold p-4 text-left">Designation</th>
+      <th class="border border-black font-semibold p-4 text-left">Unit</th>
+      <th class="border border-black font-semibold p-4 text-left">Bottom border</th>
+      <th class="border border-black font-semibold p-4 text-left">Upper border</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .}}
+    <tr>
+      <td class="border border-black p-2">{{.Title}}</td>
+      <td class="border border-black p-2">{{.Designation}}</td>
+      <td class="border border-black p-2">{{.Unit}}</td>
+      <td class="border border-black p-2">{{.BottomBorder}}</td>
+      <td class="border border-black p-2">{{.UpperBorder}}</td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>

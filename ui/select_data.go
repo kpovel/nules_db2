@@ -17,19 +17,19 @@ type city struct {
 }
 
 type optimal_value struct {
-	Title         string
-	Designation   string
-	Unit          Units
-	Bottom_border uint
-	Upper_border  *uint
+	Title        string
+	Designation  string
+	Unit         Units
+	BottomBorder uint
+	UpperBorder  *uint
 }
 
 type obtained_parameter struct {
-  ID_Measurement uint
-  ID_Station uint
-  ID_Measured_Unit uint
-  Time string
-  Value float64
+	ID_Measurement   uint
+	ID_Station       uint
+	ID_Measured_Unit uint
+	Time             string
+	Value            float64
 }
 
 func (app *App) select_data(w http.ResponseWriter, r *http.Request) {
@@ -112,29 +112,55 @@ func (app *App) select_data(w http.ResponseWriter, r *http.Request) {
     group by measurement.id_station, measurement.id_measured_unit, measurement.value, measurement.time, measurement.id_measurement
     limit 500;`)
 
-    if err != nil {
-      fmt.Fprintf(w, "Error: %v", err)
-      log.Println(err)
-      return
-    }
+		if err != nil {
+			fmt.Fprintf(w, "Error: %v", err)
+			log.Println(err)
+			return
+		}
 
-    var parameters []obtained_parameter
+		var parameters []obtained_parameter
 
-    for measurement_query.Next() {
-      var parameter obtained_parameter
-      if err := measurement_query.Scan(&parameter.ID_Measurement, &parameter.ID_Station, &parameter.ID_Measured_Unit, &parameter.Time, &parameter.Value); err != nil {
-        fmt.Fprintf(w, "Error due to scanning a table: %v", err)
-        log.Println(err)
-        return
-      }
+		for measurement_query.Next() {
+			var parameter obtained_parameter
+			if err := measurement_query.Scan(&parameter.ID_Measurement, &parameter.ID_Station, &parameter.ID_Measured_Unit, &parameter.Time, &parameter.Value); err != nil {
+				fmt.Fprintf(w, "Error due to scanning a table: %v", err)
+				log.Println(err)
+				return
+			}
 
-      parameters = append(parameters, parameter)
-    }
+			parameters = append(parameters, parameter)
+		}
 
-    parameters_table := template.Must(template.ParseFiles("./templates/obtain_parameters.html"))
-    parameters_table.Execute(w, parameters)
+		parameters_table := template.Must(template.ParseFiles("./templates/obtain_parameters.html"))
+		parameters_table.Execute(w, parameters)
 
 	case "optimal-value":
+		optimal_value_query, err := app.DB.Query(`select measured_unit.title, category.designation, measured_unit.unit, optimal_value.bottom_border, optimal_value.upper_border
+    from optimal_value
+    join category on category.id_category = optimal_value.id_category
+    join measured_unit on measured_unit.id_measured_unit = optimal_value.id_measured_unit
+    group by measured_unit.title, category.designation, measured_unit.unit, optimal_value.bottom_border, optimal_value.upper_border;`)
+
+		if err != nil {
+			fmt.Fprintf(w, "Error: %v", err)
+			log.Println(err)
+			return
+		}
+
+		var optimal_values []optimal_value
+
+		for optimal_value_query.Next() {
+			var value optimal_value
+			if err := optimal_value_query.Scan(&value.Title, &value.Designation, &value.Unit, &value.BottomBorder, &value.UpperBorder); err != nil {
+				fmt.Fprintf(w, "Error due to scanning a table: %v", err)
+				log.Println(err)
+				return
+			}
+			optimal_values = append(optimal_values, value)
+		}
+
+		optimal_value_template := template.Must(template.ParseFiles("./templates/optimal_values.html"))
+		optimal_value_template.Execute(w, optimal_values)
 	default:
 		unknown_select := "Unknown select-data"
 		fmt.Fprintf(w, unknown_select)
