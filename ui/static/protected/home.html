@@ -9,7 +9,12 @@
   </head>
   <body>
     <header class="p-4 bg-blue-400 flex justify-between">
-      <a href="/protected/home.html" class="font-semibold text-xl">Eco Station</a>
+      <div class="space-x-3">
+        <a href="/protected/home.html" class="font-semibold text-xl">Eco Station</a>
+        <a href="/protected/home.html" class="p-2 border border-gray-200 rounded-md bg-blue-500">Queries</a>
+        <a href="/protected/connected-stations.html" class="p-2 border border-gray-200 rounded-md">List of connected stations</a>
+        <a href="/protected/station-measured.html" class="p-2 border border-gray-200 rounded-md">Measured from a station</a>
+      </div>
       <button class="font-medium text-lg" hx-get="/api/signout">Sign Out</button>
     </header>
     <main class="p-4">
