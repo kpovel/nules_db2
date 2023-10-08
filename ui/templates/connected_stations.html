@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th class="border border-black font-semibold p-4 text-left">ID Station</th>
+      <th class="border border-black font-semibold p-4 text-left">City</th>
+      <th class="border border-black font-semibold p-4 text-left">Name</th>
+      <th class="border border-black font-semibold p-4 text-left">Enabled from</th>
+      <th class="border border-black font-semibold p-4 text-left">Current measurement</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .}}
+      <tr>
+        <td class="border border-black p-2">{{ .IdStation }}</td>
+        <td class="border border-black p-2">{{ .City }}</td>
+        <td class="border border-black p-2">{{ .Name }}</td>
+        <td class="border border-black p-2">{{ .FirstMeasured }}</td>
+        <td class="border border-black p-2">{{ .LastMeasurements }}</td>
+      </tr>
+    {{end}}
+  </tbody>
+</table>
+
+
