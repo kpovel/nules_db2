@@ -19,10 +19,26 @@
     </header>
     <main class="p-4">
       <h2 class="text-lg font-medium inline">Measured from a station</h2>
-      // todo: available stations
-      <div class="pt-4" hx-get="/api/available-stations" hx-trigger="load">
-      </div>
-      options
+      <form class="pt-4" hx-post="/api/measurements" hx-target="#measurements">
+        <label class="font-medium">
+          Select a station:
+          <div hx-get="/api/stations" hx-trigger="load" hx-swap="outerHTML" hx-target="#stations" id="stations"></div>
+        </label>
+        <h3 class="font-medium mt-4">Select a measurement date range:</h3>
+        <div class="flex space-x-4">
+          <label class="block font-medium">
+            Start Date
+            <input type="date" name="start-date" class="mt-1 p-2 w-full border rounded-md" required>
+          </label>
+          <label class="block font-medium">
+            End Date
+            <input type="date" name="end-date" class="mt-1 p-2 w-full border rounded-md" required>
+          </label>
+        </div>
+        <button type="submit" class="border rounded-md p-2 bg-gray-300 mt-4">Receive measurements</button>
+      </form>
+
+      <div id="measurements"></div>
     </main>
   </body>
 </html>
