@@ -64,7 +64,7 @@ create table MQTT_Unit (
 create table User_Data (
     ID_User  serial primary key,
     Login    char(36) unique,
-    Password char(36)
+    Password varchar(36)
 );
 
 create table Favorite (
