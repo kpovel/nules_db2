@@ -5,7 +5,9 @@
       <th class="border border-black font-semibold p-4 text-left">City</th>
       <th class="border border-black font-semibold p-4 text-left">Name</th>
       <th class="border border-black font-semibold p-4 text-left">Enabled from</th>
-      <th class="border border-black font-semibold p-4 text-left">Current measurement</th>
+      <th class="border border-black font-semibold p-4 text-left">Measured title</th>
+      <th class="border border-black font-semibold p-4 text-left">Measured unit</th>
+      <th class="border border-black font-semibold p-4 text-left">Last Measurement</th>
     </tr>
   </thead>
   <tbody>
@@ -14,8 +16,10 @@
         <td class="border border-black p-2">{{ .IdStation }}</td>
         <td class="border border-black p-2">{{ .City }}</td>
         <td class="border border-black p-2">{{ .Name }}</td>
-        <td class="border border-black p-2">{{ .FirstMeasured }}</td>
-        <td class="border border-black p-2">{{ .LastMeasurements }}</td>
+        <td class="border border-black p-2">{{ .EnabledFrom }}</td>
+        <td class="border border-black p-2">{{ .MeasuredTitle }}</td>
+        <td class="border border-black p-2">{{ .MeasuredUnit }}</td>
+        <td class="border border-black p-2">{{ .LastMeasurement }}</td>
       </tr>
     {{end}}
   </tbody>
