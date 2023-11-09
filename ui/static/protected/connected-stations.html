@@ -19,6 +19,16 @@
     </header>
     <main class="p-4">
       <h2 class="text-lg font-medium inline">List of connected stations</h2>
+      <p class="font-medium">To see visual examples follow the link:
+        <a
+          href="http://localhost:3000/dashboard/1-a-look-at-connected-stations"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+          >
+          http://localhost:3000/dashboard/1-a-look-at-connected-stations
+        </a>
+      </p>
       <div id="data" class="pt-4" hx-get="/api/connected-stations" hx-trigger="load">
 
       </div>
