@@ -2,3 +2,4 @@
 .idea/
 target/
 /ui/tmp
+/ui/metabase/plugins
