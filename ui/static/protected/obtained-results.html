@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Eco Station: Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <script src="/htmx.min.js"></script>
+  </head>
+  <body>
+    <header class="p-4 bg-blue-400 flex justify-between">
+      <div class="space-x-3">
+        <a href="/protected/home.html" class="font-semibold text-xl">
+          Eco Station
+        </a>
+        <a
+          href="/protected/home.html"
+          class="p-2 border border-gray-200 rounded-md"
+          >Queries
+        </a>
+        <a
+          href="/protected/connected-stations.html"
+          class="p-2 border border-gray-200 rounded-md"
+        >
+          List of connected stations
+        </a>
+        <a
+          href="/protected/station-measured.html"
+          class="p-2 border border-gray-200 rounded-md"
+        >
+          Measured from a station
+        </a>
+        <a
+          href="/protected/obtained-results.html"
+          class="p-2 border border-gray-200 rounded-md bg-blue-500"
+        >
+          Obtained results
+        </a>
+      </div>
+      <button class="font-medium text-lg" hx-get="/api/signout">
+        Sign Out
+      </button>
+    </header>
+    <main class="p-4">
+      <h2 class="text-lg font-medium inline">
+        Table representation of the obtained results:
+      </h2>
+      <select
+        class="border border-black rounded-md p-1 w-[80%]"
+        name="select-data"
+        hx-get="/api/obtained-results"
+        hx-target="#data"
+        hx-trigger="load, change"
+      >
+        <option value="max-pm">
+          Visualization of the maximum values of harmful particles PM2.5, PM10
+          in the table form by regions
+        </option>
+        <option value="daily-harmful-pm2">
+          Visualization in tabular form of the number of times when the average
+          daily values of PM2.5 particulate matter were recorded, the values of
+          which are classified as harmful at a certain station for the entire
+          time
+        </option>
+        <option value="sulfur-dioxide">
+          Visualization of the number of measurements that fall into the
+          categories of optimal values for sulfur dioxide in a table
+        </option>
+        <option value="carbon-monoxide">
+          Visualization of the number of measurements that fall into the
+          categories of optimal values for carbon monoxide in a table
+        </option>
+      </select>
+
+      <div id="data" class="pt-4"></div>
+    </main>
+  </body>
+</html>

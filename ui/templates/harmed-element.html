@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th class="border border-black font-semibold p-4 text-left">Day</th>
+      <th class="border border-black font-semibold p-4 text-left">Average value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range . }}
+    <tr>
+      <td class="border border-black p-2">{{ .Day }}</td>
+      <td class="border border-black p-2">{{ .AvgValue }}</td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
+

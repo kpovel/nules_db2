@@ -69,6 +69,7 @@ func main() {
   http.HandleFunc("/api/connected-stations", app.connected_stations)
   http.HandleFunc("/api/stations", app.stations)
   http.HandleFunc("/api/measurements", app.measurements)
+  http.HandleFunc("/api/obtained-results", app.ObtainedResults)
 
 	log.Print("Listening on :42069")
 
