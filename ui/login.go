@@ -29,7 +29,7 @@ func (app *App) login(w http.ResponseWriter, r *http.Request) {
 
 	cookie := &http.Cookie{
 		Name:  "authorized",
-		Value: "true",
+		Value: login,
 		Path:  "/",
 	}
 
