@@ -1,3 +1,0 @@
-data/input/Results.csv filter=lfs diff=lfs merge=lfs -text
-data/output/results.csv filter=lfs diff=lfs merge=lfs -text
-ui/metabase/metabase.jar filter=lfs diff=lfs merge=lfs -text
